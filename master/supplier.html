@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="tabelBarang">
+        <button type="button" id="btnTambahBarang" class="btn btn-warning mt-4 mb-4" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Tambah +
+        </button>
+        <table id="myTable" class="table table-light table-striped w-100">
+            <tr>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Perusahaan</th>
+                <th>Telp Sales</th>
+                <th>Telp Kantor</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+            <tbody id="tbody">
+                <tr>
+                    <td>S001</td>
+                    <td>Ali</td>
+                    <td>PT Lenovo Indonesia</td>
+                    <td>082241980044</td>
+                    <td>780989089000</td>
+                    <td>Li@gmail.com</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id1">
+                            X </button></td>
+                </tr>
+                <tr>
+                    <td>S002</td>
+                    <td>Ali</td>
+                    <td>PT Samsung Indonesia</td>
+                    <td>082241980044</td>
+                    <td>780989089000</td>
+                    <td>Si@gmail.com</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove"
+                            id="id2">X</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="modalTitle">Tambah Barang</span>
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body w-100">
+                        <div class="input-group">
+                            <div class=" mb-3 row">
+                                <div class="col-lg-6 col-12">
+                                    <label for="kodeb">Kode Perusahaan</label>
+                                    <input type="text" class="form-control" id="kodeb" placeholder="Kode..."
+                                        aria-label="kode" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" id="nama" placeholder="Nama..."
+                                        aria-label="nama" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-12">
+                                    <label for="perusahaan">Perusahaan</label>
+                                    <input type="text" class="form-control" id="perusahaan" placeholder="Perusahaan..."
+                                        aria-label="Perusahaan" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="telpSales">Telp Sales</label>
+                                    <input type="text" class="form-control" id="telpSales" placeholder="telp sales..."
+                                        aria-label="telpSales" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="telpKantor">Telp Kantor</label>
+                                    <input type="text" class="form-control" id="telpKantor" placeholder="telp kantor..."
+                                        aria-label="telpKantor" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-12">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" placeholder="email..."
+                                        aria-label="email" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="save" class="btn btn-warning">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            console.log("anda telah berhasil masuk ke Barang");
+            var save = document.getElementById('save');
+            $('#btnTambahBarang').click(function () {
+                console.log("Anda KLIK SAYA");
+                $('#modalTitle').text('Tambah Supplier');
+                save.disabled = false;
+            })
+
+            var updateBtn = document.querySelectorAll(".btnUpdate");
+            var modalTitle = document.getElementById("modalTitle");
+
+
+            updateBtn.forEach(function (e) {
+                e.addEventListener("click", function (e, i) {
+                    modalTitle.innerHTML = "Update Supplier";
+                    save.disabled = true;
+                });
+            });
+
+            $("#save").click(function () {
+                total = 0;
+                var panjang = $('tbody tr').length;
+                var kode = $('#kodeb').val();
+                var nama = $('#nama').val();
+                var perusahaan = $('#perusahaan').val();
+                var telpSales = $('#telpSales').val();
+                var telpKantor = $('#telpKantor').val();
+                var email = $('#email').val();
+                $('#tbody').append("<tr> <td> " + kode + " </td><td> " + nama + "</td><td > " +
+                    perusahaan +
+                    " </td> <td> " +
+                    telpSales + " </td> <td> " + telpKantor +
+                    "</td><td>" + email +
+                    "</td><td><button class='btn btn-warning me-2'>V</button><button class='btn btn-warning remove' id='id'" +
+                    panjang +
+                    ">X</button></td ></tr>")
+                console.log(panjang);
+                // $('#tbody tr').each(function () {
+                //     var currentRow = $(this);
+                //     total = total + Number(currentRow.find("td:eq(5)").text());
+                // });
+                // $("#total").text(total);
+                $.fn.clearform();
+            });
+            //menghilangkan value//
+            $.fn.clearform = function () {
+                $('#kodeb').val("");
+                $('#kodeb').val("")
+                $('#nama').val("")
+                $('#perusahaan').val("");
+                $('#telpSales').val("");
+                $('#telpKantor').val("");
+                $('#email').val("");
+                console.log("Cleared");
+            };
+            //logika tombol untuk hapus baris//
+            $("tbody").on('click', '.remove', function () {
+                if (confirm('Deletes row?')) {
+                    var id = $(this).attr('id');
+                    console.log(id);
+                    $(this).closest('tr').remove();
+                    // $('#tbody tr').each(function () {
+                    // var currentRow = $(this);
+                    // });
+                } else {
+
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

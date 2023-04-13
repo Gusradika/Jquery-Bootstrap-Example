@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="tabelBarang">
+        <button type="button" id="btnTambahBarang" class="btn btn-warning mt-4 mb-4" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Tambah +
+        </button>
+        <table id="myTable" class="table table-light table-striped w-100">
+            <tr>
+                <th>Kode</th>
+                <th>Gol</th>
+                <th>Nama</th>
+                <th>Satuan</th>
+                <th>Harga</th>
+                <th>Action</th>
+            </tr>
+            <tbody id="tbody">
+                <tr>
+                    <td>M001</td>
+                    <td>Komputer</td>
+                    <td>CPU</td>
+                    <td>pcs</td>
+                    <td>2000</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id1">
+                            X </button></td>
+                </tr>
+                <tr>
+                    <td>M002</td>
+                    <td>Komputer</td>
+                    <td>VGA</td>
+                    <td>pcs</td>
+                    <td>2000</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove"
+                            id="id2">X</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>M003</td>
+                    <td>Komputer</td>
+                    <td>RAM</td>
+                    <td>pcs</td>
+                    <td>1000</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id3">
+                            X
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>M004</td>
+                    <td>HP</td>
+                    <td>SAMSUNG</td>
+                    <td>pcs</td>
+                    <td>4000</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id4">
+                            X
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>M005</td>
+                    <td>HP</td>
+                    <td>LENOVO</td>
+                    <td>pcs</td>
+                    <td>7000</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id5">
+                            X
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="modalTitle">Tambah Barang</span>
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body w-100">
+                        <div class="input-group">
+                            <div class=" mb-3 row">
+                                <div class="col-lg-6 col-12">
+                                    <label for="kodeb">Kode Barang</label>
+                                    <input type="text" class="form-control" id="kodeb" placeholder="Kode..."
+                                        aria-label="kode" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="gol">Golongan Barang</label>
+                                    <input type="text" class="form-control" id="gol" placeholder="Golongan..."
+                                        aria-label="gol" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="nama">Nama Barang</label>
+                                    <input type="text" class="form-control" id="nama" placeholder="Nama..."
+                                        aria-label="nama" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="satuan">Satuan Barang</label>
+                                    <input type="text" class="form-control" id="satuan" placeholder="Satuan..."
+                                        aria-label="satuan" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-12">
+                                    <label for="harga">Harga Barang</label>
+                                    <input type="text" class="form-control" id="harga" placeholder="Harga..."
+                                        aria-label="harga" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="save" class="btn btn-warning">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            console.log("anda telah berhasil masuk ke Barang");
+            var save = document.getElementById('save');
+            $('#btnTambahBarang').click(function () {
+                console.log("Anda KLIK SAYA");
+                $('#modalTitle').text('Tambah Barang');
+                save.disabled = false;
+            })
+
+            var updateBtn = document.querySelectorAll(".btnUpdate");
+            var modalTitle = document.getElementById("modalTitle");
+
+
+            updateBtn.forEach(function (e) {
+                e.addEventListener("click", function (e, i) {
+                    modalTitle.innerHTML = "Update barang";
+                    save.disabled = true;
+                });
+            });
+
+            $("#save").click(function () {
+                total = 0;
+                var panjang = $('tbody tr').length;
+                var kode = $('#kodeb').val();
+                var gol = $('#gol').val();
+                var nama = $('#nama').val();
+                var satuan = $('#satuan').val();
+                var harga = $('#harga').val();
+                $('#tbody').append("<tr> <td> " + kode + " </td><td> " + gol + "</td><td > " + nama +
+                    " </td> <td> " +
+                    satuan + " </td> <td> " + harga +
+                    "</td><td><button class='btn btn-warning me-2'>V</button><button class='btn btn-warning remove' id='id'" +
+                    panjang +
+                    ">X</button></td ></tr>")
+                console.log(panjang);
+                $('#tbody tr').each(function () {
+                    var currentRow = $(this);
+                    total = total + Number(currentRow.find("td:eq(5)").text());
+                });
+                $("#total").text(total);
+                $.fn.clearform();
+            });
+            //menghilangkan value//
+            $.fn.clearform = function () {
+                $('#kodeb').val("");
+                $('#nama').val("")
+                $('#gol').val("")
+                $('#satuan').val("");
+                $('#harga').val("");
+                $('#jumlah').val("");
+                console.log("Cleared");
+            };
+            //logika tombol untuk hapus baris//
+            $("tbody").on('click', '.remove', function (i) {
+                if (confirm('Deletes row?')) {
+                    var id = $(this).attr('id');
+                    console.log(id);
+                    $(this).closest('tr').remove();
+                    // $('#tbody tr').each(function () {
+                    // var currentRow = $(this);
+                    // });
+                } else {
+
+                }
+
+            });
+        });
+    </script>
+</body>
+
+</html>

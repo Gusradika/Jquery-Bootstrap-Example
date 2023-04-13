@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="tabelBarang">
+        <button type="button" id="btnTambahBarang" class="btn btn-warning mt-4 mb-4" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Tambah +
+        </button>
+        <table id="myTable" class="table table-light table-striped w-100">
+            <tr>
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Jabatan</th>
+                <th>Telp</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Action</th>
+            </tr>
+            <tbody id="tbody">
+                <tr>
+                    <td>K001</td>
+                    <td>Agus</td>
+                    <td>admin</td>
+                    <td>082241980044</td>
+                    <td>agus@gmail.com</td>
+                    <td>1234</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id1">
+                            X </button></td>
+                </tr>
+                <tr>
+                    <td>K002</td>
+                    <td>Oky</td>
+                    <td>Operator</td>
+                    <td>082241980044</td>
+                    <td>oky@gmail.com</td>
+                    <td>1234</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove"
+                            id="id2">X</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>K003</td>
+                    <td>Sulis</td>
+                    <td>Supervisor</td>
+                    <td>082241980044</td>
+                    <td>sulis@gmail.com</td>
+                    <td>1234</td>
+                    <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove"
+                            id="id3">X</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="modalTitle">Tambah Barang</span>
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body w-100">
+                        <div class="input-group">
+                            <div class=" mb-3 row">
+                                <div class="col-lg-6 col-12">
+                                    <label for="kodeb">Kode Karyawan</label>
+                                    <input type="text" class="form-control" id="kodeb" placeholder="Kode..."
+                                        aria-label="kode" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" id="nama" placeholder="Nama..."
+                                        aria-label="nama" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-12">
+                                    <label for="jabatan">Jabatan</label>
+                                    <input type="text" class="form-control" id="jabatan" placeholder="jabatan..."
+                                        aria-label="jabatan" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="telp">Telp</label>
+                                    <input type="text" class="form-control" id="telp" placeholder="telp..."
+                                        aria-label="telp" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" placeholder="Email..."
+                                        aria-label="email" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="col-12">
+                                    <label for="password">Password</label>
+                                    <input type="text" class="form-control" id="password" placeholder="password..."
+                                        aria-label="password" aria-describedby="basic-addon1">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="save" class="btn btn-warning">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            console.log("anda telah berhasil masuk ke Barang");
+            var save = document.getElementById('save');
+            $('#btnTambahBarang').click(function () {
+                console.log("Anda KLIK SAYA");
+                $('#modalTitle').text('Tambah Karyawan');
+                save.disabled = false;
+            })
+
+            var updateBtn = document.querySelectorAll(".btnUpdate");
+            var modalTitle = document.getElementById("modalTitle");
+
+
+            updateBtn.forEach(function (e) {
+                e.addEventListener("click", function (e, i) {
+                    modalTitle.innerHTML = "Update Karyawan";
+                    save.disabled = true;
+                });
+            });
+
+            $("#save").click(function () {
+                total = 0;
+                var panjang = $('tbody tr').length;
+                var kode = $('#kodeb').val();
+                var nama = $('#nama').val();
+                var jabatan = $('#jabatan').val();
+                var telp = $('#telp').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                $('#tbody').append("<tr> <td> " + kode + " </td><td> " + nama + "</td><td > " +
+                    jabatan +
+                    " </td> <td> " +
+                    telp + " </td> <td> " + email +
+                    "</td><td>" + password +
+                    "</td><td><button class='btn btn-warning me-2'>V</button><button class='btn btn-warning remove' id='id'" +
+                    panjang +
+                    ">X</button></td ></tr>")
+                console.log(panjang);
+                // $('#tbody tr').each(function () {
+                //     var currentRow = $(this);
+                //     total = total + Number(currentRow.find("td:eq(5)").text());
+                // });
+                // $("#total").text(total);
+                $.fn.clearform();
+            });
+            //menghilangkan value//
+            $.fn.clearform = function () {
+                $('#kodeb').val("");
+                $('#nama').val("")
+                $('#jabatan').val("");
+                $('#telp').val("");
+                $('#email').val("");
+                $('#password').val("");
+                console.log("Cleared");
+            };
+            //logika tombol untuk hapus baris//
+            $("tbody").on('click', '.remove', function () {
+                if (confirm('Deletes row?')) {
+                    var id = $(this).attr('id');
+                    console.log(id);
+                    $(this).closest('tr').remove();
+                    // $('#tbody tr').each(function () {
+                    // var currentRow = $(this);
+                    // });
+                } else {
+
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
