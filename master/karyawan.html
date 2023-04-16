@@ -33,7 +33,8 @@
                     <td>agus@gmail.com</td>
                     <td>1234</td>
                     <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id1">
+                            data-bs-target="#exampleModal"> U </button><button data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" class="btn btn-warning remove" id="id1">
                             X </button></td>
                 </tr>
                 <tr>
@@ -44,8 +45,8 @@
                     <td>oky@gmail.com</td>
                     <td>1234</td>
                     <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove"
-                            id="id2">X</button>
+                            data-bs-target="#exampleModal"> U </button><button data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" class="btn btn-warning remove" id="id2">X</button>
                     </td>
                 </tr>
                 <tr>
@@ -56,8 +57,8 @@
                     <td>sulis@gmail.com</td>
                     <td>1234</td>
                     <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove"
-                            id="id3">X</button>
+                            data-bs-target="#exampleModal"> U </button><button data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" class="btn btn-warning remove" id="id3">X</button>
                     </td>
                 </tr>
             </tbody>
@@ -123,6 +124,26 @@
 
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="modalTitle">Tambah Barang</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body w-100">
+                    Delete row?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="deleteBtn" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function () {
             console.log("anda telah berhasil masuk ke Barang");
@@ -135,7 +156,9 @@
 
             var updateBtn = document.querySelectorAll(".btnUpdate");
             var modalTitle = document.getElementById("modalTitle");
-
+            var indexSekarang = 0;
+            var x = document.querySelectorAll('.remove');
+            var row = document.querySelectorAll('tr');
 
             updateBtn.forEach(function (e) {
                 e.addEventListener("click", function (e, i) {
@@ -158,7 +181,7 @@
                     " </td> <td> " +
                     telp + " </td> <td> " + email +
                     "</td><td>" + password +
-                    "</td><td><button class='btn btn-warning me-2'>V</button><button class='btn btn-warning remove' id='id'" +
+                    "</td><td><button class='btn btn-warning me-2'>V</button><button data-bs-toggle='modal' data-bs-target='#deleteModal' class='btn btn-warning remove' id='id'" +
                     panjang +
                     ">X</button></td ></tr>")
                 console.log(panjang);
@@ -168,6 +191,7 @@
                 // });
                 // $("#total").text(total);
                 $.fn.clearform();
+                checkRow();
             });
             //menghilangkan value//
             $.fn.clearform = function () {
@@ -179,19 +203,48 @@
                 $('#password').val("");
                 console.log("Cleared");
             };
-            //logika tombol untuk hapus baris//
-            $("tbody").on('click', '.remove', function () {
-                if (confirm('Deletes row?')) {
-                    var id = $(this).attr('id');
-                    console.log(id);
-                    $(this).closest('tr').remove();
-                    // $('#tbody tr').each(function () {
-                    // var currentRow = $(this);
-                    // });
-                } else {
 
-                }
+
+            var row = document.querySelectorAll('tr');
+
+            checkRow();
+
+            function checkRow() {
+                x = document.querySelectorAll('.remove');
+                x.forEach(function (e, i) {
+                    // console.log(index);
+                    console.log(i);
+                    e.addEventListener("click", function () {
+                        // console.log(v);
+                        indexSekarang = i + 1;
+                        console.log(i);
+                        console.log(indexSekarang);
+
+                    });
+                });
+                row = document.querySelectorAll('tr');
+                console.log(row);
+            }
+
+            $('#deleteBtn').click(function () {
+                row[indexSekarang].remove();
+                checkRow();
             });
+
+            //logika tombol untuk hapus baris//
+            // $("tbody").on('click', '.remove', function () {
+            //     if (confirm('Deletes row?')) {
+            //         var id = $(this).attr('id');
+            //         console.log(id);
+            //         $(this).closest('tr').remove();
+            //         // $('#tbody tr').each(function () {
+            //         // var currentRow = $(this);
+            //         // });
+            //     } else {
+
+            //     }
+            // });
+
         });
     </script>
 </body>

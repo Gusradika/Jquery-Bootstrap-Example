@@ -18,6 +18,10 @@
             data-bs-target="#exampleModal">
             Tambah +
         </button>
+        <button type="button" id="btnTambahBarang" class="btn btn-warning mt-4 mb-4" data-bs-toggle="modal"
+            data-bs-target="#detailModal">
+            Detail
+        </button>
 
         <table id="myTable" class="table table-light table-striped w-100">
             <tr>
@@ -28,7 +32,7 @@
                 <th>Total</th>
                 <th>Action</th>
             </tr>
-            <tbody id="tbody">
+            <tbody id="xdx">
                 <tr>
                     <td class="kode">20230304165103</td>
                     <td>PT.Aksara</td>
@@ -39,7 +43,8 @@
                             data-bs-target="#modalText">
                             V
                         </button>
-                        <button class="btn btn-warning remove" id="id1">X</button></td>
+                        <button class="btn btn-warning remove" data-bs-toggle='modal' data-bs-target='#deleteModal'
+                            id="id1">X</button></td>
                 </tr>
                 <tr>
                     <td class="kode">20230304165110</td>
@@ -51,7 +56,8 @@
                             data-bs-target="#modalText">
                             V
                         </button>
-                        <button class="btn btn-warning remove" id="id2">X</button></td>
+                        <button class="btn btn-warning remove" data-bs-toggle='modal' data-bs-target='#deleteModal'
+                            id="id2">X</button></td>
                 </tr>
             </tbody>
         </table>
@@ -68,43 +74,119 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body w-100">
-                        <div class="input-group">
-                            <div class=" mb-3 row">
-                                <div class="col-lg-6 col-12">
-                                    <label for="kodeb">Kode</label>
-                                    <input type="text" class="form-control" id="kode" placeholder="Kode..."
-                                        aria-label="kode" aria-describedby="basic-addon1">
+
+                        <h3 for="" class="mt-4">Penjualan</h3>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="kode">kode</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="kode" id="kode"
+                                        aria-label="kode" aria-describedby="basic-addon1" readonly>
                                 </div>
-                                <div class="col-lg-6 col-12">
-                                    <label for="yy">Supplier</label>
-                                    <select class="form-select" id="yy" aria-label="Default select example">
+                            </div>
+                            <div class="col-6">
+                                <label for="karyawan">Karyawan</label>
+                                <select class="form-select" id="Karyawan" aria-label="Default select example">
+                                    <option selected>-</option>
+                                    <option value="Sulis">Sulis</option>
+                                    <option value="Oky">Oky</option>
+                                    <option value="Agus">Agus</option>
+                                </select>
+                            </div>
+
+                            <div class="col-6">
+                                <label for="tanggal">tanggal</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="tanggal" id="tanggal"
+                                        aria-label="tanggal" aria-describedby="basic-addon1" readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="karyawan">Jabatan</label>
+                                <input type="text" class="form-control" placeholder="jabatan" id="Jabatan"
+                                    aria-label="jabatan" aria-describedby="basic-addon1" readonly>
+                            </div>
+                            <div class="col-12">
+                                <label for="Supplier">Supplier</label>
+                                <select class="form-select" id="Supplier" aria-label="Default select example">
+                                    <option selected>-</option>
+                                    <option value="PT.Aksara">PT.Aksara</option>
+                                    <option value="PT.Tulis">PT.Tulis</option>
+                                    <option value="PT.Marwana">PT.Marwana</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label for="Telp">Telp</label>
+                                <input type="text" class="form-control" placeholder="telp.." id="Telp" aria-label="telp"
+                                    aria-describedby="basic-addon1" readonly>
+                            </div>
+                            <div class="col-6">
+                                <label for="Alamat">Alamat</label>
+                                <input type="text" class="form-control" placeholder="Alamat.." id="Alamat"
+                                    aria-label="Alamat" aria-describedby="basic-addon1" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Kode -->
+                        <h3 for="" class="mt-4">Kode Barang</h3>
+                        <div class=" mb-2">
+                            <div class="mx-auto row">
+                                <div class="col-2">
+                                    <label for="kodeb">kode</label>
+                                    <select class="form-select" id="kodeb" aria-label="Default select example">
                                         <option selected>-</option>
-                                        <option value="PT.Aksara">PT.Aksara</option>
-                                        <option value="PT.Tulis">PT.Tulis</option>
-                                        <option value="PT.Marwana">PT.Marwana</option>
+                                        <option value="m001">m001</option>
+                                        <option value="m002">m002</option>
+                                        <option value="m003">m003</option>
                                     </select>
                                 </div>
-                                <div class="col-12">
-                                    <label for="xx">Karyawan</label>
-                                    <select class="form-select" id="xx" aria-label="Default select example">
-                                        <option selected>-</option>
-                                        <option value="Sulis">Sulis</option>
-                                        <option value="Oky">Oky</option>
-                                        <option value="Agus">Agus</option>
-                                    </select>
+                                <div class="col-2">
+                                    <label for="nama">Nama</label>
+                                    <input type="text" class="form-control" placeholder="nama.." id="nama"
+                                        aria-label="nama" aria-describedby="basic-addon1" readonly>
                                 </div>
-                                <div class="col-lg-6 col-12">
+                                <div class="col-2">
+                                    <label for="satuan">satuan</label>
+                                    <input type="text" class="form-control" placeholder="satuan.." id="satuan"
+                                        aria-label="satuan" aria-describedby="basic-addon1" readonly>
+                                </div>
+                                <div class="col-2">
+                                    <label for="harga">harga</label>
+                                    <input type="text" class="form-control" placeholder="harga.." id="harga"
+                                        aria-label="harga" aria-describedby="basic-addon1" readonly>
+                                </div>
+                                <div class="col-2">
                                     <label for="jumlah">Jumlah</label>
-                                    <input type="text" class="form-control" id="jumlah" placeholder="Jumlah..."
+                                    <input type="text" class="form-control" placeholder="jumlah.." id="jumlah"
                                         aria-label="jumlah" aria-describedby="basic-addon1">
                                 </div>
-                                <div class="col-lg-6 col-12">
-                                    <label for="harga">Harga</label>
-                                    <input type="text" class="form-control" id="harga" placeholder="harga..."
-                                        aria-label="harga" aria-describedby="basic-addon1">
+
+                                <div class="col-2">
+                                    <label for="jumlah"></label>
+                                    <button type="button" class="btn btn btn-warning w-100" id="save">Save</button>
                                 </div>
                             </div>
 
+
+
+                        </div>
+
+
+                        <!-- Table -->
+                        <div id="tabelBarang">
+                            <table id="myTable" class="table table-light table-striped w-100">
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Nama</th>
+                                    <th>Satuan</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tbody id="tbody">
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>
@@ -118,24 +200,46 @@
 
         <!-- Modal Text -->
         <!-- Modal -->
-        <div class="modal fade" id="modalText" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="modalTitle">View</span>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="modalTitle">Detail
+                                Pembelian</span>
                         </h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body w-100">
-                        Kode : 20230304165110
-                        <br>
-                        Supplier : PT.Aksara
-                        <br>
-                        Karyawan : Oky
-                        <br>
-                        Jumlah : 6
-                        <br>
-                        Total : 12000
+                        <table id="myTable" class="table table-light table-striped w-100">
+                            <tr>
+                                <th>Kode</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
+                            </tr>
+                            <tr>
+                                <td>m001</td>
+                                <td>2</td>
+                                <td>2000</td>
+                            </tr>
+                            <tr>
+                                <td>m002</td>
+                                <td>3</td>
+                                <td>4000</td>
+                            </tr>
+                            <tr>
+                                <td>m003</td>
+                                <td>3</td>
+                                <td>5000</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>8</td>
+                                <td>11000</td>
+                            </tr>
+                            <tbody id="tbody">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -148,9 +252,36 @@
 
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="modalTitle">Tambah Barang</span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body w-100">
+                    Delete row?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="deleteBtn" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function () {
             var total = 0;
+
+            var harga = document.querySelectorAll('.harga');
+            harga.forEach(function (e) {
+                total += +e.innerHTML;
+            });
+            $("#total").text(total);
+
             //ambil tanngal//
             var date = new Date();
             var year = date.getFullYear();
@@ -159,10 +290,54 @@
             var hour = date.getHours();
             var minute = date.getMinutes();
             var second = date.getSeconds();
+
+            var indexSekarang = 0;
+            var x = document.querySelectorAll('.remove');
+            var row = document.querySelectorAll('tr');
             //var kode dan tanggal//
             $('#kode').val(year + "" + month + "" + day + "" + hour + "" + minute + "" + second);
             $('#tanggal').val(day + "-" + month + "-" + year);
             console.log(day);
+
+            //if else supp untuk munculkan telp dan alamat//
+            $("#Supplier").change(function () {
+                if ($("#Supplier").val() == "PT.Aksara") {
+                    $("#Telp").val("08123456789");
+                    $("#Alamat").val("Sidoarjo");
+                } else if ($("#Supplier").val() == "PT.Tulis") {
+                    $("#Telp").val("08198765432");
+                    $("#Alamat").val("Surabaya");
+                } else if ($("#Supplier").val() == "PT.Marwana") {
+                    $("#Telp").val("08167382647");
+                    $("#Alamat").val("Malang");
+                }
+            });
+            //if else karyawan untuk munculkan jabatan//
+            $("#Karyawan").change(function () {
+                if ($("#Karyawan").val() == "Sulis") {
+                    $("#Jabatan").val("Operator");
+                } else if ($("#Karyawan").val() == "Oky") {
+                    $("#Jabatan").val("Admin");
+                } else if ($("#Karyawan").val() == "Agus") {
+                    $("#Jabatan").val("Manager");
+                }
+            });
+            //if else kode barang untuk munculkan nama satuan harga//
+            $("#kodeb").change(function () {
+                if ($("#kodeb").val() == "m001") {
+                    $("#nama").val("cpu");
+                    $("#satuan").val("pcs");
+                    $("#harga").val("1000");
+                } else if ($("#kodeb").val() == "m002") {
+                    $("#nama").val("vga");
+                    $("#satuan").val("pcs");
+                    $("#harga").val("1000");
+                } else if ($("#kodeb").val() == "m003") {
+                    $("#nama").val("ram");
+                    $("#satuan").val("pcs");
+                    $("#harga").val("2000");
+                }
+            });
             //if else supp untuk munculkan telp dan alamat//
 
             //if else karyawan untuk munculkan jabatan//
@@ -179,26 +354,25 @@
             $("#save").click(function () {
                 total = 0;
                 var panjang = $('tbody tr').length;
-                var kode = $('#kode').val();
-                var yy = $('#yy').val();
-                // console.log($('#supplier').val());
-                var xx = $('#xx').val();
-                // console.log($('#karyawan').val());
-                var jumlah = $('#jumlah').val();
+                var kode = $('#kodeb').val();
+                var nama = $('#nama').val();
+                var satuan = $('#satuan').val();
                 var harga = $('#harga').val();
+                var jumlah = $('#jumlah').val();
                 var totalhrg = harga * jumlah;
-                $('#tbody').append("<tr> <td> " + kode + " </td> <td> " + yy + " </td> <td > " +
-                    xx + " </td> <td > " + jumlah + "</td> <td> " + harga +
-                    " </td> <td><button class='btn btn-warning'>V</button> <button id = \"id" +
-                    panjang +
-                    "\" class=\"remove btn btn-warning\">X</td ></tr>")
+                $('#tbody').append("<tr> <td> " + kode + " </td> <td> " + nama + " </td> <td> " +
+                    satuan + " </td> <td> " + harga + " </td> <td> " + jumlah + " </td><td> " +
+                    totalhrg + " </td> <td> <button id = \"id" + panjang +
+                    "\" class=\"remove btn btn-warning\" data-bs-target='#deleteModal' data-bs-toggle='modal'> x </td> </tr>"
+                )
                 console.log(panjang);
                 $('#tbody tr').each(function () {
                     var currentRow = $(this);
-                    total = total + Number(currentRow.find("td:eq(4)").text());
+                    total = total + Number(currentRow.find("td:eq(5)").text());
                 });
-                $("#total").text(total);
+                // $("#total").text(total);
                 $.fn.clearform();
+                checkRow();
             });
             //menghilangkan value//
             $.fn.clearform = function () {
@@ -210,20 +384,53 @@
                 console.log("a");
             };
             //logika tombol untuk hapus baris//
-            $("tbody").on('click', '.remove', function () {
-                if (confirm('Deletes row?')) {
-                    total = 0;
-                    var id = $(this).attr('id');
-                    console.log(id);
-                    $(this).closest('tr').remove();
-                    $('#tbody tr').each(function () {
-                        var currentRow = $(this);
-                        total = total + Number(currentRow.find("td:eq(4)").text());
-                    });
-                    $("#total").text(total);
-                } else {
+            // $("tbody").on('click', '.remove', function () {
+            //     if (confirm('Deletes row?')) {
+            //         total = 0;
+            //         var id = $(this).attr('id');
+            //         console.log(id);
+            //         $(this).closest('tr').remove();
+            //         $('#tbody tr').each(function () {
+            //             var currentRow = $(this);
+            //             total = total + Number(currentRow.find("td:eq(4)").text());
+            //         });
+            //         $("#total").text(total);
+            //     } else {
 
-                }
+            //     }
+            // });
+            checkRow();
+
+            function checkRow() {
+                x = document.querySelectorAll('.remove');
+                x.forEach(function (e, i) {
+                    // console.log(index);
+                    console.log(i);
+                    e.addEventListener("click", function () {
+                        // console.log(v);
+                        indexSekarang = i + 1;
+                        console.log(i);
+                        console.log(indexSekarang);
+
+                    });
+                });
+                row = document.querySelectorAll('tr');
+                console.log(row);
+
+            }
+
+
+
+            $('#deleteBtn').click(function () {
+                row[indexSekarang].remove();
+                checkRow();
+                harga = document.querySelectorAll('.harga');
+                total = 0;
+                console.log(harga);
+                harga.forEach(function (e) {
+                    total += +e.innerHTML;
+                });
+                $("#total").text(total);
             });
         });
     </script>

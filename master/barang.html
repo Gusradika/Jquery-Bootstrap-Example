@@ -31,7 +31,8 @@
                     <td>pcs</td>
                     <td>2000</td>
                     <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id1">
+                            data-bs-target="#exampleModal"> U </button><button data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" class="btn btn-warning remove" id="id1">
                             X </button></td>
                 </tr>
                 <tr>
@@ -41,8 +42,8 @@
                     <td>pcs</td>
                     <td>2000</td>
                     <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove"
-                            id="id2">X</button>
+                            data-bs-target="#exampleModal"> U </button><button data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" class="btn btn-warning remove" id="id2">X</button>
                     </td>
                 </tr>
                 <tr>
@@ -52,7 +53,8 @@
                     <td>pcs</td>
                     <td>1000</td>
                     <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id3">
+                            data-bs-target="#exampleModal"> U </button><button data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" class="btn btn-warning remove" id="id3">
                             X
                         </button>
                     </td>
@@ -64,7 +66,8 @@
                     <td>pcs</td>
                     <td>4000</td>
                     <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id4">
+                            data-bs-target="#exampleModal"> U </button><button data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" class="btn btn-warning remove" id="id4">
                             X
                         </button>
                     </td>
@@ -76,7 +79,8 @@
                     <td>pcs</td>
                     <td>7000</td>
                     <td align="left"><button class="btnUpdate btn btn-warning me-2" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"> U </button><button class="btn btn-warning remove" id="id5">
+                            data-bs-target="#exampleModal"> U </button><button data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" class="btn btn-warning remove" id="id5">
                             X
                         </button>
                     </td>
@@ -136,6 +140,26 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"><span id="modalTitle">Tambah Barang</span>
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body w-100">
+                        Delete row?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="deleteBtn" class="btn btn-danger"
+                            data-bs-dismiss="modal">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -151,10 +175,17 @@
 
             var updateBtn = document.querySelectorAll(".btnUpdate");
             var modalTitle = document.getElementById("modalTitle");
+            var indexSekarang = 0;
+            var x = document.querySelectorAll('.remove');
+            var row = document.querySelectorAll('tr');
 
-
-            updateBtn.forEach(function (e) {
-                e.addEventListener("click", function (e, i) {
+            updateBtn.forEach(function (e, i) {
+                e.addEventListener("click", function () {
+                    console.log(e);
+                    console.log(i);
+                    // console.log(e);
+                    indexSekarang = i;
+                    console.log("index Sekarang Value = " + indexSekarang);
                     modalTitle.innerHTML = "Update barang";
                     save.disabled = true;
                 });
@@ -171,9 +202,9 @@
                 $('#tbody').append("<tr> <td> " + kode + " </td><td> " + gol + "</td><td > " + nama +
                     " </td> <td> " +
                     satuan + " </td> <td> " + harga +
-                    "</td><td><button class='btn btn-warning me-2'>V</button><button class='btn btn-warning remove' id='id'" +
+                    "</td><td><button data-bs-toggle='modal'  data-bs-target='#exampleModal' class='btnUpdate btn btn-warning me-2'>U</button><button class='btn btn-warning remove' data-bs-target='#deleteModal' data-bs-toggle='modal' id='id" +
                     panjang +
-                    ">X</button></td ></tr>")
+                    "'>X</button></td ></tr>")
                 console.log(panjang);
                 $('#tbody tr').each(function () {
                     var currentRow = $(this);
@@ -181,6 +212,9 @@
                 });
                 $("#total").text(total);
                 $.fn.clearform();
+
+                // console.log(x);
+                checkRow();
             });
             //menghilangkan value//
             $.fn.clearform = function () {
@@ -193,19 +227,54 @@
                 console.log("Cleared");
             };
             //logika tombol untuk hapus baris//
-            $("tbody").on('click', '.remove', function (i) {
-                if (confirm('Deletes row?')) {
-                    var id = $(this).attr('id');
-                    console.log(id);
-                    $(this).closest('tr').remove();
-                    // $('#tbody tr').each(function () {
-                    // var currentRow = $(this);
-                    // });
-                } else {
 
-                }
 
+            var row = document.querySelectorAll('tr');
+
+            checkRow();
+
+            function checkRow() {
+                x = document.querySelectorAll('.remove');
+                x.forEach(function (e, i) {
+                    // console.log(index);
+                    console.log(i);
+                    e.addEventListener("click", function () {
+                        // console.log(v);
+                        indexSekarang = i + 1;
+                        console.log(i);
+                        console.log(indexSekarang);
+
+                    });
+                });
+                row = document.querySelectorAll('tr');
+                console.log(row);
+            }
+
+
+            // var deleteBtn = document.getElementById('#deleteBtn');
+
+
+
+            $('#deleteBtn').click(function () {
+                row[indexSekarang].remove();
+                checkRow();
             });
+
+
+            // $("tbody").on('click', '.remove', function (i) {
+            //     if (confirm('Deletes row?')) {
+            //         var id = $(this).attr('id');
+            //         console.log(id);
+            //         $(this).closest('tr').remove();
+            //         // $('#tbody tr').each(function () {
+            //         // var currentRow = $(this);
+            //         // });
+            //     } else {}
+            // });
+
+
+
+
         });
     </script>
 </body>
